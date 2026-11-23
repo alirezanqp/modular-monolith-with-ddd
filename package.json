@@ -7,19 +7,19 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build api",
-    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "format": "prettier --write \"apps/**/*.ts\" \"src/**/*.ts\"",
     "start": "nest start api",
     "start:dev": "nest start api --watch",
     "start:debug": "nest start api --debug --watch",
     "start:prod": "node -r tsconfig-paths/register dist/apps/api/apps/api/src/main.js",
-    "lint": "eslint \"{apps,libs}/**/*.ts\" --fix",
+    "lint": "eslint \"{apps,src}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./apps/api/test/jest-e2e.json",
     "migrate": "tsx database/migrate.ts",
     "seed": "tsx database/seed.ts",
-    "arch:check": "depcruise --config .dependency-cruiser.cjs apps libs || true"
+    "arch:check": "depcruise --config .dependency-cruiser.cjs apps src || true"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -92,17 +92,17 @@
     "testEnvironment": "node",
     "roots": [
       "<rootDir>/apps/",
-      "<rootDir>/libs/"
+      "<rootDir>/src/"
     ],
     "moduleNameMapper": {
-      "^@building-blocks/domain(.*)$": "<rootDir>/libs/building-blocks/domain/src$1",
-      "^@building-blocks/application(.*)$": "<rootDir>/libs/building-blocks/application/src$1",
-      "^@building-blocks/infrastructure(.*)$": "<rootDir>/libs/building-blocks/infrastructure/src$1",
-      "^@modules/user-access(.*)$": "<rootDir>/libs/modules/user-access/src$1",
-      "^@modules/registrations(.*)$": "<rootDir>/libs/modules/registrations/src$1",
-      "^@modules/administration(.*)$": "<rootDir>/libs/modules/administration/src$1",
-      "^@modules/meetings(.*)$": "<rootDir>/libs/modules/meetings/src$1",
-      "^@modules/payments(.*)$": "<rootDir>/libs/modules/payments/src$1"
+      "^@building-blocks/domain(.*)$": "<rootDir>/src/building-blocks/domain/src$1",
+      "^@building-blocks/application(.*)$": "<rootDir>/src/building-blocks/application/src$1",
+      "^@building-blocks/infrastructure(.*)$": "<rootDir>/src/building-blocks/infrastructure/src$1",
+      "^@modules/user-access(.*)$": "<rootDir>/src/modules/user-access/src$1",
+      "^@modules/registrations(.*)$": "<rootDir>/src/modules/registrations/src$1",
+      "^@modules/administration(.*)$": "<rootDir>/src/modules/administration/src$1",
+      "^@modules/meetings(.*)$": "<rootDir>/src/modules/meetings/src$1",
+      "^@modules/payments(.*)$": "<rootDir>/src/modules/payments/src$1"
     }
   }
 }

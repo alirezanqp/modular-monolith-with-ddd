@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/libs/modules/administration",
+    "outDir": "../../../dist/src/building-blocks/application",
     "declaration": true
   },
   "include": ["src/**/*"],

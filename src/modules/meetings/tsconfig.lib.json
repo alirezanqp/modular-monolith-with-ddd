@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/libs/modules/user-access",
+    "outDir": "../../../dist/src/modules/meetings",
     "declaration": true
   },
   "include": ["src/**/*"],

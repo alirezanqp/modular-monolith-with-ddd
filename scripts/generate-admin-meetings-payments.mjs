@@ -10,13 +10,13 @@ function write(rel, content) {
 const tc = (out) => `{\n  "extends": "../../../tsconfig.json",\n  "compilerOptions": {\n    "outDir": "../../../dist/${out}",\n    "declaration": true\n  },\n  "include": ["src/**/*"],\n  "exclude": ["node_modules", "dist", "**/*spec.ts"]\n}\n`;
 
 // ===================== ADMINISTRATION =====================
-write('libs/modules/administration/tsconfig.lib.json', tc('libs/modules/administration'));
+write('src/modules/administration/tsconfig.lib.json', tc('src/modules/administration'));
 
-write('libs/modules/administration/src/domain/members/member-id.ts', `import { TypedIdValueBase } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/members/member-id.ts', `import { TypedIdValueBase } from '@building-blocks/domain';
 export class MemberId extends TypedIdValueBase { constructor(value?: string) { super(value); } }
 `);
 
-write('libs/modules/administration/src/domain/members/member.ts', `import { AggregateRoot } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/members/member.ts', `import { AggregateRoot } from '@building-blocks/domain';
 import { MemberId } from './member-id';
 export class Member extends AggregateRoot {
   private constructor(
@@ -41,18 +41,18 @@ export class Member extends AggregateRoot {
 }
 `);
 
-write('libs/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal-id.ts', `import { TypedIdValueBase } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal-id.ts', `import { TypedIdValueBase } from '@building-blocks/domain';
 export class MeetingGroupProposalId extends TypedIdValueBase { constructor(value?: string) { super(value); } }
 `);
 
-write('libs/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal-status.ts', `export class MeetingGroupProposalStatus {
+write('src/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal-status.ts', `export class MeetingGroupProposalStatus {
   static readonly InVerification = 'InVerification';
   static readonly Accepted = 'Accepted';
   static readonly Rejected = 'Rejected';
 }
 `);
 
-write('libs/modules/administration/src/domain/meeting-group-proposals/events/meeting-group-proposal-accepted.domain-event.ts', `import { DomainEventBase } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/meeting-group-proposals/events/meeting-group-proposal-accepted.domain-event.ts', `import { DomainEventBase } from '@building-blocks/domain';
 export class MeetingGroupProposalAcceptedDomainEvent extends DomainEventBase {
   constructor(
     readonly meetingGroupProposalId: string,
@@ -65,7 +65,7 @@ export class MeetingGroupProposalAcceptedDomainEvent extends DomainEventBase {
 }
 `);
 
-write('libs/modules/administration/src/domain/meeting-group-proposals/rules/meeting-group-proposal-can-be-verified-once.rule.ts', `import { IBusinessRule } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/meeting-group-proposals/rules/meeting-group-proposal-can-be-verified-once.rule.ts', `import { IBusinessRule } from '@building-blocks/domain';
 import { MeetingGroupProposalStatus } from '../meeting-group-proposal-status';
 export class MeetingGroupProposalCanBeVerifiedOnceRule implements IBusinessRule {
   constructor(private readonly status: string) {}
@@ -74,7 +74,7 @@ export class MeetingGroupProposalCanBeVerifiedOnceRule implements IBusinessRule 
 }
 `);
 
-write('libs/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal.ts', `import { AggregateRoot } from '@building-blocks/domain';
+write('src/modules/administration/src/domain/meeting-group-proposals/meeting-group-proposal.ts', `import { AggregateRoot } from '@building-blocks/domain';
 import { MeetingGroupProposalAcceptedDomainEvent } from './events/meeting-group-proposal-accepted.domain-event';
 import { MeetingGroupProposalId } from './meeting-group-proposal-id';
 import { MeetingGroupProposalStatus } from './meeting-group-proposal-status';
@@ -151,7 +151,7 @@ export class MeetingGroupProposal extends AggregateRoot {
 }
 `);
 
-write('libs/modules/administration/src/integration-events/meeting-group-proposal-accepted.integration-event.ts', `import { IntegrationEvent } from '@building-blocks/infrastructure';
+write('src/modules/administration/src/integration-events/meeting-group-proposal-accepted.integration-event.ts', `import { IntegrationEvent } from '@building-blocks/infrastructure';
 export class MeetingGroupProposalAcceptedIntegrationEvent extends IntegrationEvent {
   constructor(
     readonly meetingGroupProposalId: string,
@@ -166,7 +166,7 @@ export class MeetingGroupProposalAcceptedIntegrationEvent extends IntegrationEve
 }
 `);
 
-write('libs/modules/administration/src/application/contracts/administration.module.ts', `import { ICommand, ICommandWithResult, IQuery } from '@building-blocks/application';
+write('src/modules/administration/src/application/contracts/administration.module.ts', `import { ICommand, ICommandWithResult, IQuery } from '@building-blocks/application';
 export interface IAdministrationModule {
   executeCommand(command: ICommand): Promise<void>;
   executeCommand<TResult>(command: ICommandWithResult<TResult>): Promise<TResult>;
@@ -174,7 +174,7 @@ export interface IAdministrationModule {
 }
 `);
 
-write('libs/modules/administration/src/application/members/create-member.command.ts', `import { InternalCommandBase } from '@building-blocks/application';
+write('src/modules/administration/src/application/members/create-member.command.ts', `import { InternalCommandBase } from '@building-blocks/application';
 export class CreateMemberCommand extends InternalCommandBase {
   constructor(id: string, readonly memberId: string, readonly login: string, readonly email: string, readonly firstName: string, readonly lastName: string) { super(id); }
   static fromJson(d: Record<string, unknown>) {
@@ -183,7 +183,7 @@ export class CreateMemberCommand extends InternalCommandBase {
 }
 `);
 
-write('libs/modules/administration/src/application/members/create-member.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
+write('src/modules/administration/src/application/members/create-member.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
 import { releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { CreateMemberCommand } from './create-member.command';
 export class CreateMemberCommandHandler implements ICommandHandler<CreateMemberCommand> {
@@ -201,7 +201,7 @@ export class CreateMemberCommandHandler implements ICommandHandler<CreateMemberC
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/request-meeting-group-proposal-verification.command.ts', `import { InternalCommandBase } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/request-meeting-group-proposal-verification.command.ts', `import { InternalCommandBase } from '@building-blocks/application';
 export class RequestMeetingGroupProposalVerificationCommand extends InternalCommandBase {
   constructor(
     id: string,
@@ -221,7 +221,7 @@ export class RequestMeetingGroupProposalVerificationCommand extends InternalComm
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/request-meeting-group-proposal-verification.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/request-meeting-group-proposal-verification.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
 import { UnitOfWork, releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { MeetingGroupProposal } from '../../domain/meeting-group-proposals/meeting-group-proposal';
 import { MeetingGroupProposalId } from '../../domain/meeting-group-proposals/meeting-group-proposal-id';
@@ -248,13 +248,13 @@ export class RequestMeetingGroupProposalVerificationCommandHandler implements IC
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/accept-meeting-group-proposal.command.ts', `import { CommandBase } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/accept-meeting-group-proposal.command.ts', `import { CommandBase } from '@building-blocks/application';
 export class AcceptMeetingGroupProposalCommand extends CommandBase {
   constructor(readonly meetingGroupProposalId: string, readonly decisionUserId: string) { super(); }
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/accept-meeting-group-proposal.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/accept-meeting-group-proposal.command-handler.ts', `import { ICommandHandler, ISqlConnectionFactory } from '@building-blocks/application';
 import { UnitOfWork, releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { MeetingGroupProposal } from '../../domain/meeting-group-proposals/meeting-group-proposal';
 import { AcceptMeetingGroupProposalCommand } from './accept-meeting-group-proposal.command';
@@ -284,7 +284,7 @@ export class AcceptMeetingGroupProposalCommandHandler implements ICommandHandler
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/get-meeting-group-proposals.query.ts', `import { QueryBase } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/get-meeting-group-proposals.query.ts', `import { QueryBase } from '@building-blocks/application';
 export interface MeetingGroupProposalDto {
   id: string; name: string; description: string; locationCity: string; locationCountryCode: string;
   proposalUserId: string; proposalDate: Date; statusCode: string;
@@ -295,7 +295,7 @@ export class GetMeetingGroupProposalQuery extends QueryBase<MeetingGroupProposal
 }
 `);
 
-write('libs/modules/administration/src/application/meeting-group-proposals/get-meeting-group-proposals.query-handler.ts', `import { IQueryHandler, ISqlConnectionFactory } from '@building-blocks/application';
+write('src/modules/administration/src/application/meeting-group-proposals/get-meeting-group-proposals.query-handler.ts', `import { IQueryHandler, ISqlConnectionFactory } from '@building-blocks/application';
 import { releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { GetMeetingGroupProposalQuery, GetMeetingGroupProposalsQuery, MeetingGroupProposalDto } from './get-meeting-group-proposals.query';
 export class GetMeetingGroupProposalsQueryHandler implements IQueryHandler<GetMeetingGroupProposalsQuery, MeetingGroupProposalDto[]> {
@@ -320,7 +320,7 @@ export class GetMeetingGroupProposalQueryHandler implements IQueryHandler<GetMee
 }
 `);
 
-write('libs/modules/administration/src/infrastructure/administration.module-bootstrap.ts', `import { ExecutionContextAccessor, HandlerRegistry, IExecutionContextAccessor, Mediator } from '@building-blocks/application';
+write('src/modules/administration/src/infrastructure/administration.module-bootstrap.ts', `import { ExecutionContextAccessor, HandlerRegistry, IExecutionContextAccessor, Mediator } from '@building-blocks/application';
 import { BackgroundProcessor, createCommandFactory, createTypedEventFactory, DomainEventsDispatcher, InMemoryEventsBus, InboxAccessor, InboxProcessor, InternalCommandsAccessor, InternalCommandsProcessor, OutboxAccessor, OutboxProcessor, SqlConnectionFactory, UnitOfWork } from '@building-blocks/infrastructure';
 import { NewUserRegisteredIntegrationEvent } from '@modules/registrations';
 import { randomUUID } from 'crypto';
@@ -415,7 +415,7 @@ export function bootstrapAdministrationModule(options: { connectionString: strin
 }
 `);
 
-write('libs/modules/administration/src/index.ts', `export * from './application/contracts/administration.module';
+write('src/modules/administration/src/index.ts', `export * from './application/contracts/administration.module';
 export * from './application/meeting-group-proposals/accept-meeting-group-proposal.command';
 export * from './application/meeting-group-proposals/get-meeting-group-proposals.query';
 export * from './integration-events/meeting-group-proposal-accepted.integration-event';

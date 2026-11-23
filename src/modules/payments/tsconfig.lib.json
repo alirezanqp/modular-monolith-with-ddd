@@ -1,9 +1,6 @@
 {
   "extends": "../../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../../dist/libs/modules/registrations",
-    "declaration": true
-  },
+  "compilerOptions": { "outDir": "../../../dist/src/modules/payments", "declaration": true },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*spec.ts"]
 }

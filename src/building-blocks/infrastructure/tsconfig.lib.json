@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/libs/building-blocks/infrastructure",
+    "outDir": "../../../dist/src/building-blocks/infrastructure",
     "declaration": true
   },
   "include": ["src/**/*"],

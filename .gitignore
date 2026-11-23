@@ -41,5 +41,5 @@ lerna-debug.log*
 # misc
 *.tsbuildinfo
 .turbo
-.cursor/projects
+.cursor
 agent-tools

@@ -95,10 +95,10 @@ flowchart LR
 مونوریپوی Nest CLI، هم‌تراز assemblyهای اصلی:
 
 - [apps/api](apps/api) — کنترلرها، guard مربوط به permission، فیلتر خطا، Swagger
-- [libs/building-blocks/domain](libs/building-blocks/domain) — `Entity`, `ValueObject`, شناسهٔ تایپ‌شده، `BusinessRule`, `DomainEvent`
-- [libs/building-blocks/application](libs/building-blocks/application) — `ICommand` / `IQuery`، mediator هر ماژول، دکوراتورهای logging و validation و unit of work، execution context
-- [libs/building-blocks/infrastructure](libs/building-blocks/infrastructure) — `SqlConnectionFactory`, Unit of Work روی `AsyncLocalStorage`, Outbox/Inbox/InternalCommand processor, in-memory bus
-- [libs/modules/user-access](libs/modules/user-access) و به همین شکل `registrations`, `administration`, `meetings`, `payments` — هر کدام `domain` / `application` / `infrastructure` / `integration-events`
+- [src/building-blocks/domain](src/building-blocks/domain) — `Entity`, `ValueObject`, شناسهٔ تایپ‌شده، `BusinessRule`, `DomainEvent`
+- [src/building-blocks/application](src/building-blocks/application) — `ICommand` / `IQuery`، mediator هر ماژول، دکوراتورهای logging و validation و unit of work، execution context
+- [src/building-blocks/infrastructure](src/building-blocks/infrastructure) — `SqlConnectionFactory`, Unit of Work روی `AsyncLocalStorage`, Outbox/Inbox/InternalCommand processor, in-memory bus
+- [src/modules/user-access](src/modules/user-access) و به همین شکل `registrations`, `administration`, `meetings`, `payments` — هر کدام `domain` / `application` / `infrastructure` / `integration-events`
 - [database/migrations](database/migrations) — ترجمهٔ ساختار و migrationها و seed از `src/Database/CompanyName.MyMeetings.Database`
 - [docker-compose.yml](docker-compose.yml) — `postgres`, migrator, api
 
@@ -122,7 +122,7 @@ flowchart LR
 پایه:
 
 - تسک ۱ — اسکلت NestJS، پیکربندی، لاگ، Swagger، Problem Details، Postgres در Docker.
-- تسک ۲ — بلوک‌های دامنه در [libs/building-blocks/domain](libs/building-blocks/domain).
+- تسک ۲ — بلوک‌های دامنه در [src/building-blocks/domain](src/building-blocks/domain).
 - تسک ۳ — mediator هر ماژول و سه دکوراتور Command.
 - تسک ۴ — Unit of Work، Outbox، Inbox، InternalCommand، bus، job پردازنده، جدول ایمیل.
 - تسک ۵ — ترجمهٔ SQL به PostgreSQL و runner مهاجرت.

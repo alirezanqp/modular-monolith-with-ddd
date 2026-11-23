@@ -2,6 +2,8 @@
 
 NestJS + PostgreSQL port of [kgrzybek/modular-monolith-with-ddd](https://github.com/kgrzybek/modular-monolith-with-ddd).
 
+> **Note:** This codebase was AI-generated (Cursor agent) as a learning / reference port. Expect rough edges; review before production use.
+
 ## Architecture
 
 - Thin NestJS API host
@@ -11,6 +13,8 @@ NestJS + PostgreSQL port of [kgrzybek/modular-monolith-with-ddd](https://github.
 - Write model: domain aggregates + repositories
 - Read model: raw SQL against PostgreSQL views
 - Payments: event-sourced subscription payments on `payments.streams` / `payments.messages`
+
+Language & boundaries: [CONTEXT-MAP.md](CONTEXT-MAP.md). UoW / messaging: [docs/architecture/](docs/architecture/).
 
 ## Quick start
 
@@ -63,8 +67,8 @@ Seed users:
 
 ```
 apps/api                  HTTP host, auth, controllers
-libs/building-blocks/*    Domain / application / infrastructure primitives
-libs/modules/*            Bounded contexts
+src/building-blocks/*    Domain / application / infrastructure primitives
+src/modules/*            Bounded contexts
 database/migrations       PostgreSQL schemas, tables, views
 ```
 

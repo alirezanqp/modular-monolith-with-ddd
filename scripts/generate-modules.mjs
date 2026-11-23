@@ -22,10 +22,10 @@ const tsconfig = (out) => `{
 `;
 
 // ========== REGISTRATIONS ==========
-write('libs/modules/registrations/tsconfig.lib.json', tsconfig('libs/modules/registrations'));
+write('src/modules/registrations/tsconfig.lib.json', tsconfig('src/modules/registrations'));
 
 write(
-  'libs/modules/registrations/src/integration-events/new-user-registered.integration-event.ts',
+  'src/modules/registrations/src/integration-events/new-user-registered.integration-event.ts',
   `import { IntegrationEvent } from '@building-blocks/infrastructure';
 
 export class NewUserRegisteredIntegrationEvent extends IntegrationEvent {
@@ -47,7 +47,7 @@ export class NewUserRegisteredIntegrationEvent extends IntegrationEvent {
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/user-registration-id.ts',
+  'src/modules/registrations/src/domain/user-registrations/user-registration-id.ts',
   `import { TypedIdValueBase } from '@building-blocks/domain';
 
 export class UserRegistrationId extends TypedIdValueBase {
@@ -59,7 +59,7 @@ export class UserRegistrationId extends TypedIdValueBase {
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/user-registration-status.ts',
+  'src/modules/registrations/src/domain/user-registrations/user-registration-status.ts',
   `export class UserRegistrationStatus {
   static readonly WaitingForConfirmation = 'WaitingForConfirmation';
   static readonly Confirmed = 'Confirmed';
@@ -69,7 +69,7 @@ write(
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/rules/user-registration-cannot-be-confirmed-more-than-once.rule.ts',
+  'src/modules/registrations/src/domain/user-registrations/rules/user-registration-cannot-be-confirmed-more-than-once.rule.ts',
   `import { IBusinessRule } from '@building-blocks/domain';
 import { UserRegistrationStatus } from '../user-registration-status';
 
@@ -86,7 +86,7 @@ export class UserRegistrationCannotBeConfirmedMoreThanOnceRule implements IBusin
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/events/new-user-registered.domain-event.ts',
+  'src/modules/registrations/src/domain/user-registrations/events/new-user-registered.domain-event.ts',
   `import { DomainEventBase } from '@building-blocks/domain';
 
 export class NewUserRegisteredDomainEvent extends DomainEventBase {
@@ -106,7 +106,7 @@ export class NewUserRegisteredDomainEvent extends DomainEventBase {
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/events/user-registration-confirmed.domain-event.ts',
+  'src/modules/registrations/src/domain/user-registrations/events/user-registration-confirmed.domain-event.ts',
   `import { DomainEventBase } from '@building-blocks/domain';
 
 export class UserRegistrationConfirmedDomainEvent extends DomainEventBase {
@@ -118,7 +118,7 @@ export class UserRegistrationConfirmedDomainEvent extends DomainEventBase {
 );
 
 write(
-  'libs/modules/registrations/src/domain/user-registrations/user-registration.ts',
+  'src/modules/registrations/src/domain/user-registrations/user-registration.ts',
   `import { AggregateRoot } from '@building-blocks/domain';
 import { NewUserRegisteredDomainEvent } from './events/new-user-registered.domain-event';
 import { UserRegistrationConfirmedDomainEvent } from './events/user-registration-confirmed.domain-event';
@@ -224,7 +224,7 @@ export class UserRegistration extends AggregateRoot {
 );
 
 write(
-  'libs/modules/registrations/src/application/contracts/registrations.module.ts',
+  'src/modules/registrations/src/application/contracts/registrations.module.ts',
   `import { ICommand, ICommandWithResult, IQuery } from '@building-blocks/application';
 
 export interface IRegistrationsModule {
@@ -236,7 +236,7 @@ export interface IRegistrationsModule {
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/user-registration.repository.ts',
+  'src/modules/registrations/src/application/user-registrations/user-registration.repository.ts',
   `import { UserRegistration } from '../../domain/user-registrations/user-registration';
 import { UserRegistrationId } from '../../domain/user-registrations/user-registration-id';
 
@@ -249,7 +249,7 @@ export interface IUserRegistrationRepository {
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/register-new-user.command.ts',
+  'src/modules/registrations/src/application/user-registrations/register-new-user.command.ts',
   `import { CommandBaseWithResult } from '@building-blocks/application';
 
 export class RegisterNewUserCommand extends CommandBaseWithResult<string> {
@@ -267,7 +267,7 @@ export class RegisterNewUserCommand extends CommandBaseWithResult<string> {
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/register-new-user.command-handler.ts',
+  'src/modules/registrations/src/application/user-registrations/register-new-user.command-handler.ts',
   `import { ICommandHandlerWithResult } from '@building-blocks/application';
 import { UnitOfWork } from '@building-blocks/infrastructure';
 import * as bcrypt from 'bcrypt';
@@ -304,7 +304,7 @@ export class RegisterNewUserCommandHandler
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/confirm-user-registration.command.ts',
+  'src/modules/registrations/src/application/user-registrations/confirm-user-registration.command.ts',
   `import { CommandBase } from '@building-blocks/application';
 
 export class ConfirmUserRegistrationCommand extends CommandBase {
@@ -316,7 +316,7 @@ export class ConfirmUserRegistrationCommand extends CommandBase {
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/confirm-user-registration.command-handler.ts',
+  'src/modules/registrations/src/application/user-registrations/confirm-user-registration.command-handler.ts',
   `import { ICommandHandler } from '@building-blocks/application';
 import { UnitOfWork } from '@building-blocks/infrastructure';
 import { UserRegistrationId } from '../../domain/user-registrations/user-registration-id';
@@ -344,7 +344,7 @@ export class ConfirmUserRegistrationCommandHandler
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/get-user-registration.query.ts',
+  'src/modules/registrations/src/application/user-registrations/get-user-registration.query.ts',
   `import { QueryBase } from '@building-blocks/application';
 
 export interface UserRegistrationDto {
@@ -368,7 +368,7 @@ export class GetUserRegistrationQuery extends QueryBase<UserRegistrationDto | nu
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/get-user-registration.query-handler.ts',
+  'src/modules/registrations/src/application/user-registrations/get-user-registration.query-handler.ts',
   `import { IQueryHandler, ISqlConnectionFactory } from '@building-blocks/application';
 import { releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { GetUserRegistrationQuery, UserRegistrationDto } from './get-user-registration.query';
@@ -396,7 +396,7 @@ export class GetUserRegistrationQueryHandler
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/send-user-registration-confirmation-email.command.ts',
+  'src/modules/registrations/src/application/user-registrations/send-user-registration-confirmation-email.command.ts',
   `import { InternalCommandBase } from '@building-blocks/application';
 
 export class SendUserRegistrationConfirmationEmailCommand extends InternalCommandBase {
@@ -420,7 +420,7 @@ export class SendUserRegistrationConfirmationEmailCommand extends InternalComman
 );
 
 write(
-  'libs/modules/registrations/src/application/user-registrations/send-user-registration-confirmation-email.command-handler.ts',
+  'src/modules/registrations/src/application/user-registrations/send-user-registration-confirmation-email.command-handler.ts',
   `import { ICommandHandler, IEmailSender } from '@building-blocks/application';
 import { SendUserRegistrationConfirmationEmailCommand } from './send-user-registration-confirmation-email.command';
 
@@ -442,7 +442,7 @@ export class SendUserRegistrationConfirmationEmailCommandHandler
 );
 
 write(
-  'libs/modules/registrations/src/infrastructure/domain/user-registration.repository.ts',
+  'src/modules/registrations/src/infrastructure/domain/user-registration.repository.ts',
   `import { ISqlConnectionFactory } from '@building-blocks/application';
 import { releaseIfNotInTransaction } from '@building-blocks/infrastructure';
 import { IUserRegistrationRepository } from '../../application/user-registrations/user-registration.repository';
@@ -524,7 +524,7 @@ export class UserRegistrationRepository implements IUserRegistrationRepository {
 );
 
 write(
-  'libs/modules/registrations/src/infrastructure/registrations.module-bootstrap.ts',
+  'src/modules/registrations/src/infrastructure/registrations.module-bootstrap.ts',
   `import {
   ExecutionContextAccessor,
   HandlerRegistry,
@@ -685,7 +685,7 @@ export function bootstrapRegistrationsModule(options: {
 );
 
 write(
-  'libs/modules/registrations/src/index.ts',
+  'src/modules/registrations/src/index.ts',
   `export * from './application/contracts/registrations.module';
 export * from './application/user-registrations/register-new-user.command';
 export * from './application/user-registrations/confirm-user-registration.command';

@@ -21,74 +21,74 @@
     },
     "building-blocks-domain": {
       "type": "library",
-      "root": "libs/building-blocks/domain",
+      "root": "src/building-blocks/domain",
       "entryFile": "index",
-      "sourceRoot": "libs/building-blocks/domain/src",
+      "sourceRoot": "src/building-blocks/domain/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/building-blocks/domain/tsconfig.lib.json"
+        "tsConfigPath": "src/building-blocks/domain/tsconfig.lib.json"
       }
     },
     "building-blocks-application": {
       "type": "library",
-      "root": "libs/building-blocks/application",
+      "root": "src/building-blocks/application",
       "entryFile": "index",
-      "sourceRoot": "libs/building-blocks/application/src",
+      "sourceRoot": "src/building-blocks/application/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/building-blocks/application/tsconfig.lib.json"
+        "tsConfigPath": "src/building-blocks/application/tsconfig.lib.json"
       }
     },
     "building-blocks-infrastructure": {
       "type": "library",
-      "root": "libs/building-blocks/infrastructure",
+      "root": "src/building-blocks/infrastructure",
       "entryFile": "index",
-      "sourceRoot": "libs/building-blocks/infrastructure/src",
+      "sourceRoot": "src/building-blocks/infrastructure/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/building-blocks/infrastructure/tsconfig.lib.json"
+        "tsConfigPath": "src/building-blocks/infrastructure/tsconfig.lib.json"
       }
     },
     "user-access": {
       "type": "library",
-      "root": "libs/modules/user-access",
+      "root": "src/modules/user-access",
       "entryFile": "index",
-      "sourceRoot": "libs/modules/user-access/src",
+      "sourceRoot": "src/modules/user-access/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/modules/user-access/tsconfig.lib.json"
+        "tsConfigPath": "src/modules/user-access/tsconfig.lib.json"
       }
     },
     "registrations": {
       "type": "library",
-      "root": "libs/modules/registrations",
+      "root": "src/modules/registrations",
       "entryFile": "index",
-      "sourceRoot": "libs/modules/registrations/src",
+      "sourceRoot": "src/modules/registrations/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/modules/registrations/tsconfig.lib.json"
+        "tsConfigPath": "src/modules/registrations/tsconfig.lib.json"
       }
     },
     "administration": {
       "type": "library",
-      "root": "libs/modules/administration",
+      "root": "src/modules/administration",
       "entryFile": "index",
-      "sourceRoot": "libs/modules/administration/src",
+      "sourceRoot": "src/modules/administration/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/modules/administration/tsconfig.lib.json"
+        "tsConfigPath": "src/modules/administration/tsconfig.lib.json"
       }
     },
     "meetings": {
       "type": "library",
-      "root": "libs/modules/meetings",
+      "root": "src/modules/meetings",
       "entryFile": "index",
-      "sourceRoot": "libs/modules/meetings/src",
+      "sourceRoot": "src/modules/meetings/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/modules/meetings/tsconfig.lib.json"
+        "tsConfigPath": "src/modules/meetings/tsconfig.lib.json"
       }
     },
     "payments": {
       "type": "library",
-      "root": "libs/modules/payments",
+      "root": "src/modules/payments",
       "entryFile": "index",
-      "sourceRoot": "libs/modules/payments/src",
+      "sourceRoot": "src/modules/payments/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/modules/payments/tsconfig.lib.json"
+        "tsConfigPath": "src/modules/payments/tsconfig.lib.json"
       }
     }
   }

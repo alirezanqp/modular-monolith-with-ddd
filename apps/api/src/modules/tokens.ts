@@ -1,0 +1,6 @@
+export const USER_ACCESS_MODULE = Symbol('USER_ACCESS_MODULE');
+export const REGISTRATIONS_MODULE = Symbol('REGISTRATIONS_MODULE');
+export const ADMINISTRATION_MODULE = Symbol('ADMINISTRATION_MODULE');
+export const MEETINGS_MODULE = Symbol('MEETINGS_MODULE');
+export const PAYMENTS_MODULE = Symbol('PAYMENTS_MODULE');
+export const EVENTS_BUS = Symbol('EVENTS_BUS');

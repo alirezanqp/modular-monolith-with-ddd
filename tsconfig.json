@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@building-blocks/domain": ["libs/building-blocks/domain/src"],
+      "@building-blocks/domain/*": ["libs/building-blocks/domain/src/*"],
+      "@building-blocks/application": ["libs/building-blocks/application/src"],
+      "@building-blocks/application/*": ["libs/building-blocks/application/src/*"],
+      "@building-blocks/infrastructure": ["libs/building-blocks/infrastructure/src"],
+      "@building-blocks/infrastructure/*": ["libs/building-blocks/infrastructure/src/*"],
+      "@modules/user-access": ["libs/modules/user-access/src"],
+      "@modules/user-access/*": ["libs/modules/user-access/src/*"],
+      "@modules/registrations": ["libs/modules/registrations/src"],
+      "@modules/registrations/*": ["libs/modules/registrations/src/*"],
+      "@modules/administration": ["libs/modules/administration/src"],
+      "@modules/administration/*": ["libs/modules/administration/src/*"],
+      "@modules/meetings": ["libs/modules/meetings/src"],
+      "@modules/meetings/*": ["libs/modules/meetings/src/*"],
+      "@modules/payments": ["libs/modules/payments/src"],
+      "@modules/payments/*": ["libs/modules/payments/src/*"]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: mymeetings
+      POSTGRES_PASSWORD: mymeetings
+      POSTGRES_DB: MyMeetings
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mymeetings -d MyMeetings"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrator:
+    build:
+      context: .
+      dockerfile: database/Dockerfile.migrator
+    environment:
+      DATABASE_URL: postgres://mymeetings:mymeetings@postgres:5432/MyMeetings
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgres://mymeetings:mymeetings@postgres:5432/MyMeetings
+      JWT_SECRET: mymeetings-dev-secret
+      JWT_ISSUER: MyMeetings
+      JWT_AUDIENCE: MyMeetingsAPI
+    ports:
+      - "5000:5000"
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
